@@ -12,8 +12,9 @@ import java.math.BigDecimal;
  * @author geaja121
  */
 public class SaleItem {
-	BigDecimal quantityPurchased;
-	BigDecimal salePrice;
+	private BigDecimal quantityPurchased;
+	private BigDecimal salePrice;
+	private Product product;
 
 	public BigDecimal getQuantityPurchased() {
 		return quantityPurchased;
@@ -31,5 +32,8 @@ public class SaleItem {
 		this.salePrice = salePrice;
 	}
 	
-	
+	public BigDecimal getItemTotal(){
+		BigDecimal total = salePrice.multiply(quantityPurchased);
+		return total;
+	}
 }

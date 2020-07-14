@@ -12,12 +12,12 @@ import java.math.BigDecimal;
  * @author geaja121
  */
 public class Product {
-	String productID;
-	String name;
-	String description;
-	String category;
-	BigDecimal listPrice;
-	BigDecimal quantityInStock;
+	private String productID;
+	private String name;
+	private String description;
+	private String category;
+	private BigDecimal listPrice;
+	private BigDecimal quantityInStock;
 
 	public String getProductID() {
 		return productID;

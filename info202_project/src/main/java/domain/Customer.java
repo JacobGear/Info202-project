@@ -10,13 +10,13 @@ package domain;
  * @author geaja121
  */
 public class Customer {
-	Integer customerID;
-	String username;
-	String firstName;
-	String surname;
-	String password;
-	String emailAddress;
-	String shippingAddress;
+	private Integer customerID;
+	private String username;
+	private String firstName;
+	private String surname;
+	private String password;
+	private String emailAddress;
+	private String shippingAddress;
 
 	public Integer getCustomerID() {
 		return customerID;

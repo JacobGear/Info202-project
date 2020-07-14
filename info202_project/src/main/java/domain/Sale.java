@@ -5,16 +5,20 @@
  */
 package domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  *
  * @author geaja121
  */
 public class Sale {
-	Integer saleID;
-	LocalDateTime date;
-	String status;
+	private Integer saleID;
+	private LocalDateTime date;
+	private String status;
+	private Customer customer;
+	private ArrayList<SaleItem> items = new ArrayList<>();
 
 	public Integer getSaleID() {
 		return saleID;
@@ -40,5 +44,18 @@ public class Sale {
 		this.status = status;
 	}
 	
+	public BigDecimal getTotal(){
+		BigDecimal total = BigDecimal.ZERO;
+	
+		for (SaleItem item : items) {
+			total.add(item.getItemTotal());
+		}
+		
+		return total;
+	}
+	
+	public void addItem(SaleItem saleItem){
+		items.add(saleItem);
+	}
 	
 }
