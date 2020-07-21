@@ -28,7 +28,7 @@ public class MainMenu extends javax.swing.JFrame {
 
       jLabel2 = new javax.swing.JLabel();
       jLabel1 = new javax.swing.JLabel();
-      jButton1 = new javax.swing.JButton();
+      btnNewProduct = new javax.swing.JButton();
       jButton2 = new javax.swing.JButton();
       jButton3 = new javax.swing.JButton();
 
@@ -43,11 +43,11 @@ public class MainMenu extends javax.swing.JFrame {
       jLabel1.setText("Product Administration");
       jLabel1.setName("jLabel1"); // NOI18N
 
-      jButton1.setText("Add a New Product");
-      jButton1.setName("jButton1"); // NOI18N
-      jButton1.addActionListener(new java.awt.event.ActionListener() {
+      btnNewProduct.setText("Add a New Product");
+      btnNewProduct.setName("btnNewProduct"); // NOI18N
+      btnNewProduct.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
+            btnNewProductActionPerformed(evt);
          }
       });
 
@@ -74,7 +74,7 @@ public class MainMenu extends javax.swing.JFrame {
                .addGroup(layout.createSequentialGroup()
                   .addGap(136, 136, 136)
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                     .addComponent(btnNewProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                      .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                      .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addContainerGap(124, Short.MAX_VALUE))
@@ -85,7 +85,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addContainerGap()
             .addComponent(jLabel1)
             .addGap(18, 18, 18)
-            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnNewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -96,9 +96,12 @@ public class MainMenu extends javax.swing.JFrame {
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
-   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   private void btnNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewProductActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_jButton1ActionPerformed
+		ProductEditor pe = new ProductEditor(this, true);
+		pe.setLocationRelativeTo(this);
+		pe.setVisible(true);
+   }//GEN-LAST:event_btnNewProductActionPerformed
 
    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
       // TODO add your handling code here:
@@ -141,7 +144,7 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private javax.swing.JButton jButton1;
+   private javax.swing.JButton btnNewProduct;
    private javax.swing.JButton jButton2;
    private javax.swing.JButton jButton3;
    private javax.swing.JLabel jLabel1;
