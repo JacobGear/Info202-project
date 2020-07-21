@@ -5,6 +5,8 @@
  */
 package gui;
 
+import domain.SaleItem;
+
 /**
  *
  * @author geaja121
@@ -17,6 +19,7 @@ public class ProductEditor extends javax.swing.JDialog {
 	public ProductEditor(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
+		cmboCategory.setEditable(true);
 	}
 
 	/**
@@ -29,47 +32,52 @@ public class ProductEditor extends javax.swing.JDialog {
    private void initComponents() {
 
       jLabel1 = new javax.swing.JLabel();
-      jTextField1 = new javax.swing.JTextField();
+      txtId = new javax.swing.JTextField();
       jLabel2 = new javax.swing.JLabel();
-      jTextField2 = new javax.swing.JTextField();
+      txtName = new javax.swing.JTextField();
       jLabel3 = new javax.swing.JLabel();
       jScrollPane1 = new javax.swing.JScrollPane();
-      jTextArea1 = new javax.swing.JTextArea();
+      txtDescription = new javax.swing.JTextArea();
       jLabel4 = new javax.swing.JLabel();
       jLabel5 = new javax.swing.JLabel();
       jLabel6 = new javax.swing.JLabel();
-      jTextField3 = new javax.swing.JTextField();
-      jTextField4 = new javax.swing.JTextField();
-      jTextField5 = new javax.swing.JTextField();
+      txtPrice = new javax.swing.JTextField();
+      txtQuantity = new javax.swing.JTextField();
+      jButton1 = new javax.swing.JButton();
+      jButton2 = new javax.swing.JButton();
+      cmboCategory = new javax.swing.JComboBox<>();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
       jLabel1.setText("ID:");
       jLabel1.setName("jLabel1"); // NOI18N
 
-      jTextField1.setText("txtId");
-      jTextField1.setName("jTextField1"); // NOI18N
-      jTextField1.addActionListener(new java.awt.event.ActionListener() {
+      txtId.setName("txtId"); // NOI18N
+      txtId.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField1ActionPerformed(evt);
+            txtIdActionPerformed(evt);
          }
       });
 
       jLabel2.setText("Name:");
       jLabel2.setName("jLabel2"); // NOI18N
 
-      jTextField2.setText("jTextField2");
-      jTextField2.setName("jTextField2"); // NOI18N
+      txtName.setName("txtName"); // NOI18N
+      txtName.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtNameActionPerformed(evt);
+         }
+      });
 
       jLabel3.setText("Description:");
       jLabel3.setName("jLabel3"); // NOI18N
 
       jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-      jTextArea1.setColumns(20);
-      jTextArea1.setRows(5);
-      jTextArea1.setName("jTextArea1"); // NOI18N
-      jScrollPane1.setViewportView(jTextArea1);
+      txtDescription.setColumns(20);
+      txtDescription.setRows(5);
+      txtDescription.setName("txtDescription"); // NOI18N
+      jScrollPane1.setViewportView(txtDescription);
 
       jLabel4.setText("Category:");
       jLabel4.setName("jLabel4"); // NOI18N
@@ -80,14 +88,33 @@ public class ProductEditor extends javax.swing.JDialog {
       jLabel6.setText("Quantity in Stock:");
       jLabel6.setName("jLabel6"); // NOI18N
 
-      jTextField3.setText("jTextField3");
-      jTextField3.setName("jTextField3"); // NOI18N
+      txtPrice.setName("txtPrice"); // NOI18N
 
-      jTextField4.setText("jTextField4");
-      jTextField4.setName("jTextField4"); // NOI18N
+      txtQuantity.setName("txtQuantity"); // NOI18N
 
-      jTextField5.setText("jTextField5");
-      jTextField5.setName("jTextField5"); // NOI18N
+      jButton1.setText("Save");
+      jButton1.setName("jButton1"); // NOI18N
+      jButton1.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+         }
+      });
+
+      jButton2.setText("Cancel");
+      jButton2.setName("jButton2"); // NOI18N
+      jButton2.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton2ActionPerformed(evt);
+         }
+      });
+
+      cmboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+      cmboCategory.setName("cmboCategory"); // NOI18N
+      cmboCategory.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            cmboCategoryActionPerformed(evt);
+         }
+      });
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
@@ -96,20 +123,26 @@ public class ProductEditor extends javax.swing.JDialog {
          .addGroup(layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jTextField4)
-               .addComponent(jTextField2)
-               .addComponent(jTextField5)
-               .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-               .addComponent(jTextField1)
-               .addComponent(jTextField3))
+               .addGroup(layout.createSequentialGroup()
+                  .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGroup(layout.createSequentialGroup()
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(txtPrice)
+                     .addComponent(txtName)
+                     .addComponent(txtQuantity)
+                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                     .addComponent(txtId)
+                     .addComponent(cmboCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addContainerGap())
       );
       layout.setVerticalGroup(
@@ -118,36 +151,72 @@ public class ProductEditor extends javax.swing.JDialog {
             .addContainerGap()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel1)
-               .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel2)
-               .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(jLabel3)
                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(11, 11, 11)
+            .addGap(10, 10, 10)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel4)
-               .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addComponent(cmboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel5)
-               .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel6)
-               .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(45, Short.MAX_VALUE))
+               .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(jButton1)
+               .addComponent(jButton2))
+            .addContainerGap())
       );
 
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
-   private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+   private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_jTextField1ActionPerformed
+   }//GEN-LAST:event_txtIdActionPerformed
+
+   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      // TODO add your handling code here:
+		String name;
+		String id;
+		String description;
+		String category; 
+		Integer price;
+		Integer quantity;
+		
+		id = txtId.getText();
+		name = txtName.getText();
+		description = txtDescription.getText();
+		category = (String) cmboCategory.getSelectedItem();
+		price = Integer.valueOf(txtPrice.getText());
+		quantity = Integer.valueOf(txtQuantity.getText());
+		
+		System.out.println("id: " + id + "\n" + "name: " + name + "\n" + description + "\n" + category + "\n" + price + "\n" + quantity);
+   }//GEN-LAST:event_jButton1ActionPerformed
+
+   private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_txtNameActionPerformed
+
+   private void cmboCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboCategoryActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_cmboCategoryActionPerformed
+
+   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      // TODO add your handling code here:
+		dispose();
+   }//GEN-LAST:event_jButton2ActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -192,6 +261,9 @@ public class ProductEditor extends javax.swing.JDialog {
 	}
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JComboBox<String> cmboCategory;
+   private javax.swing.JButton jButton1;
+   private javax.swing.JButton jButton2;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
@@ -199,11 +271,10 @@ public class ProductEditor extends javax.swing.JDialog {
    private javax.swing.JLabel jLabel5;
    private javax.swing.JLabel jLabel6;
    private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JTextArea jTextArea1;
-   private javax.swing.JTextField jTextField1;
-   private javax.swing.JTextField jTextField2;
-   private javax.swing.JTextField jTextField3;
-   private javax.swing.JTextField jTextField4;
-   private javax.swing.JTextField jTextField5;
+   private javax.swing.JTextArea txtDescription;
+   private javax.swing.JTextField txtId;
+   private javax.swing.JTextField txtName;
+   private javax.swing.JTextField txtPrice;
+   private javax.swing.JTextField txtQuantity;
    // End of variables declaration//GEN-END:variables
 }
