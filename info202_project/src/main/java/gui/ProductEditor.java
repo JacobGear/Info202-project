@@ -5,7 +5,8 @@
  */
 package gui;
 
-import domain.SaleItem;
+import domain.Product;
+import java.math.BigDecimal;
 
 /**
  *
@@ -192,17 +193,33 @@ public class ProductEditor extends javax.swing.JDialog {
 		String id;
 		String description;
 		String category; 
-		Integer price;
-		Integer quantity;
+		BigDecimal price;
+		BigDecimal quantity;
 		
+		try{
 		id = txtId.getText();
 		name = txtName.getText();
 		description = txtDescription.getText();
 		category = (String) cmboCategory.getSelectedItem();
-		price = Integer.valueOf(txtPrice.getText());
-		quantity = Integer.valueOf(txtQuantity.getText());
+		price = new BigDecimal(txtPrice.getText());
+		quantity = new BigDecimal(txtQuantity.getText());
 		
-		System.out.println("id: " + id + "\n" + "name: " + name + "\n" + description + "\n" + category + "\n" + price + "\n" + quantity);
+		Product p = new Product();
+		p.setProductID(id);
+		p.setName(name);
+		p.setDescription(description);
+		p.setCategory(category);
+		p.setListPrice(price);
+		p.setQuantityInStock(quantity);
+		
+		System.out.println(p);
+		}catch(Exception e){
+			System.out.println("Make sure all the fields have been filled!");
+		}
+		
+		
+		
+		
    }//GEN-LAST:event_jButton1ActionPerformed
 
    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
