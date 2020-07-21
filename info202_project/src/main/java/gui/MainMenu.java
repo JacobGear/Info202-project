@@ -56,6 +56,11 @@ public class MainMenu extends javax.swing.JFrame {
 
       jButton3.setText("Exit");
       jButton3.setName("jButton3"); // NOI18N
+      jButton3.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton3ActionPerformed(evt);
+         }
+      });
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
@@ -94,6 +99,11 @@ public class MainMenu extends javax.swing.JFrame {
    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       // TODO add your handling code here:
    }//GEN-LAST:event_jButton1ActionPerformed
+
+   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      // TODO add your handling code here:
+		System.exit(0);
+   }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
