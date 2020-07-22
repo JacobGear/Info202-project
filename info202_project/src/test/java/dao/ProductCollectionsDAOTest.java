@@ -82,6 +82,11 @@ public class ProductCollectionsDAOTest {
     public void testGetProducts() {
         assertThat(pDAO.getProducts(), hasItem(product1));
     }
+    
+    @Test
+    public void testGetCategories() {
+        assertThat(pDAO.getCategories(), hasItem(product1.getCategory()));
+    }
 
     @Test
     public void testRemoveProduct() {
@@ -89,5 +94,6 @@ public class ProductCollectionsDAOTest {
         assertThat(pDAO.getProducts(), not(hasItem(product1)));
         assertThat(pDAO.getProducts(), hasSize(1));
     }
+    
     
 }

@@ -27,9 +27,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jButton1" min="-2" pref="234" max="-2" attributes="0"/>
+                      <Component id="btnSave" min="-2" pref="234" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="209" max="-2" attributes="0"/>
+                      <Component id="btnExit" min="-2" pref="209" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -90,8 +90,8 @@
               </Group>
               <EmptySpace pref="7" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnExit" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -177,22 +177,22 @@
         <Property name="name" type="java.lang.String" value="txtQuantity" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnSave">
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
-        <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="btnSave" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnExit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
-        <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="btnExit" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmboCategory">

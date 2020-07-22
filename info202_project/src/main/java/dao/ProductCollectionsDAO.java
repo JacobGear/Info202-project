@@ -15,9 +15,12 @@ import java.util.Collection;
  */
 public class ProductCollectionsDAO {
     private static Collection<Product> products = new ArrayList<>();
+    private static Collection<String> categories = new ArrayList<>();
     
     public void saveProduct(Product p){
         products.add(p);
+        String category = p.getCategory();
+        categories.add(category);
     }
     
     public Collection<Product> getProducts(){
@@ -26,5 +29,9 @@ public class ProductCollectionsDAO {
     
     public void removeProduct(Product p){
         products.remove(p);
+    }
+    
+    public Collection<String> getCategories(){
+        return categories;
     }
 }
