@@ -8,6 +8,7 @@ package domain;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Sale {
 	private LocalDateTime date;
 	private String status;
 	private Customer customer;
-	private ArrayList<SaleItem> items = new ArrayList<>();
+	private Collection<SaleItem> items = new ArrayList<>();
 
 	public Integer getSaleID() {
 		return saleID;
