@@ -5,6 +5,7 @@
  */
 package gui;
 
+import dao.ProductCollectionsDAO;
 import domain.Product;
 import java.math.BigDecimal;
 
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
  */
 public class ProductEditor extends javax.swing.JDialog {
 
+    ProductCollectionsDAO pDAO = new ProductCollectionsDAO();
 	/**
 	 * Creates new form ProductEditor
 	 */
@@ -211,8 +213,11 @@ public class ProductEditor extends javax.swing.JDialog {
 		p.setCategory(category);
 		p.setListPrice(price);
 		p.setQuantityInStock(quantity);
+                
+                pDAO.saveProduct(p);
+                System.out.println(p);
+		dispose();
 		
-		System.out.println(p);
 		}catch(Exception e){
 			System.out.println("Make sure all the fields have been filled!");
 		}
