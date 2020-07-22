@@ -21,7 +21,7 @@ public class ProductCollectionsDAO {
     }
     
     public Collection<Product> getProducts(){
-       return products;
+      return products;
     }
     
     public void removeProduct(Product p){
