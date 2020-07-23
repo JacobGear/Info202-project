@@ -12,39 +12,34 @@ skinparam {
 
 actor "User" as user
 participant "MainMenu" as menu <<form>>
-participant "petForm : AddPetForm" as petForm <<form>>
-participant "dataStore : PetDataStore" as dataStore <<data store>>
-participant "Owner" as owner <<domain>>
-participant "pet : Pet" as pet <<domain>>
+participant "productForm : AddNewProductForm" as form <<form>>
+participant "productDAO : ProductCollectionsDAO" as dao  <<dao>>
+participant "product : Product" as product <<domain>> 
 
-user -> menu : click "Add Pet"
+user -> menu : click "Add a new Product"
 menu++
 
-menu -> petForm : displayForm()
-petForm++
+menu -> form : displayForm()
+form++
 
-petForm -> dataStore : getSpecies()
-dataStore++
-return species
+user -> form : Type in ID
+user -> form : Type in name
+user -> form : Type in description
+user -> form : Clicks on category combobox
 
-petForm -> petForm : populateSpecies(species)
+form -> dao : getCategories() 
+dao++
+return categories
 
-user -> petForm : enter owner ID
-user -> petForm : click "Find Owner"
+user -> form : enters in price
+user -> form : enters in quantity
 
-petForm -> dataStore : findOwner(ownerID)
-dataStore++
-create owner
-dataStore -> owner : <<construct from\ndatabase>>
-return owner
+user -> form : click "save"
+create product
+form -> product : <<construct from form data>>
 
-user -> petForm : enter pet details
-
-user -> petForm : click "Save Pet"
-create pet
-petForm -> pet : <<construct from form data>>
-petForm -> dataStore : savePet(pet)
-dataStore++
+form -> dao : saveProduct(product)
+dao++
 return
 
 return
