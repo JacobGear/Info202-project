@@ -1,0 +1,29 @@
+@startuml
+
+skinparam {
+  Style StrictUML
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+actor "User" as user
+participant "MainMenu" as menu <<form>>
+participant "viewProductForm : ViewProductForm" as form <<form>>
+participant "productDAO : ProductCollectionsDAO" as dao  <<dao>>
+
+user -> menu : click "View Products"
+menu++
+
+menu -> form : displayForm()
+form++
+
+form -> dao : getProducts() 
+dao++
+return products
+
+return
+@enduml
