@@ -7,7 +7,6 @@ package dao;
 
 import domain.Product;
 import java.math.BigDecimal;
-import static java.util.function.Predicate.not;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -83,6 +82,9 @@ public class ProductCollectionsDAOTest {
     @Test
     public void testGetCategories() {
         assertThat(pDAO.getCategories(), hasItem(product1.getCategory()));
+        assertThat(pDAO.getCategories(), hasItem(product2.getCategory()));
+        int size = pDAO.getCategories().size();
+        assertThat(pDAO.getCategories(), hasSize(size));
     }
 
     @Test
