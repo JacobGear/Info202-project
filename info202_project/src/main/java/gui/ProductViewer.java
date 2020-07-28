@@ -159,8 +159,7 @@ public class ProductViewer extends javax.swing.JDialog {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 		 // TODO add your handling code here:
-		 if (listProducts.isSelectionEmpty()) {
-		 } else {
+		 if (listProducts.isSelectionEmpty() == false) {
 			 int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove the selected product?");
 			 if (result == JOptionPane.YES_OPTION) {
 				 Product p = listProducts.getSelectedValue();
@@ -169,6 +168,7 @@ public class ProductViewer extends javax.swing.JDialog {
 				 productsModel.updateItems(products);
 			 }
 		 }
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
