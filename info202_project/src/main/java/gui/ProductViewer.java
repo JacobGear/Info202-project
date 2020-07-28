@@ -42,8 +42,8 @@ public class ProductViewer extends javax.swing.JDialog {
       jScrollPane1 = new javax.swing.JScrollPane();
       listProducts = new javax.swing.JList<>();
       btnClose = new javax.swing.JButton();
-      jButton1 = new javax.swing.JButton();
-      jButton2 = new javax.swing.JButton();
+      btnEdit = new javax.swing.JButton();
+      btnDelete = new javax.swing.JButton();
       jLabel1 = new javax.swing.JLabel();
       jTextField1 = new javax.swing.JTextField();
       btnSearch = new javax.swing.JButton();
@@ -52,10 +52,10 @@ public class ProductViewer extends javax.swing.JDialog {
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-      listProducts.setModel(new javax.swing.AbstractListModel<String>() {
+      listProducts.setModel(new javax.swing.AbstractListModel<Product>() {
          String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
          public int getSize() { return strings.length; }
-         public String getElementAt(int i) { return strings[i]; }
+         public Object getElementAt(int i) { return strings[i]; }
       });
       jScrollPane1.setViewportView(listProducts);
 
@@ -66,17 +66,17 @@ public class ProductViewer extends javax.swing.JDialog {
          }
       });
 
-      jButton1.setText("Edit");
-      jButton1.addActionListener(new java.awt.event.ActionListener() {
+      btnEdit.setText("Edit");
+      btnEdit.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
+            btnEditActionPerformed(evt);
          }
       });
 
-      jButton2.setText("Delete");
-      jButton2.addActionListener(new java.awt.event.ActionListener() {
+      btnDelete.setText("Delete");
+      btnDelete.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton2ActionPerformed(evt);
+            btnDeleteActionPerformed(evt);
          }
       });
 
@@ -102,9 +102,9 @@ public class ProductViewer extends javax.swing.JDialog {
             .addContainerGap()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                  .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                  .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -143,9 +143,9 @@ public class ProductViewer extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+               .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
       );
 
@@ -157,13 +157,14 @@ public class ProductViewer extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+		  //Product p = .getSelectedItem(); 
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
       // TODO add your handling code here:
@@ -213,14 +214,14 @@ public class ProductViewer extends javax.swing.JDialog {
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnClose;
+   private javax.swing.JButton btnDelete;
+   private javax.swing.JButton btnEdit;
    private javax.swing.JButton btnSearch;
-   private javax.swing.JButton jButton1;
-   private javax.swing.JButton jButton2;
    private javax.swing.JComboBox<String> jComboBox1;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JScrollPane jScrollPane1;
    private javax.swing.JTextField jTextField1;
-   private javax.swing.JList<String> listProducts;
+   private javax.swing.JList<Product> listProducts;
    // End of variables declaration//GEN-END:variables
 }
