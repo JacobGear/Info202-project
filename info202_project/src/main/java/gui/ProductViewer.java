@@ -9,6 +9,7 @@ import dao.ProductCollectionsDAO;
 import domain.Product;
 import helpers.SimpleListModel;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -135,7 +136,7 @@ public class ProductViewer extends javax.swing.JDialog {
                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -157,8 +158,17 @@ public class ProductViewer extends javax.swing.JDialog {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-		  //Product p = .getSelectedItem(); 
+		 // TODO add your handling code here:
+		 if (listProducts.isSelectionEmpty()) {
+		 } else {
+			 int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove the selected product?");
+			 if (result == JOptionPane.YES_OPTION) {
+				 Product p = listProducts.getSelectedValue();
+				 pDAO.removeProduct(p);
+				 Collection<Product> products = pDAO.getProducts();
+				 productsModel.updateItems(products);
+			 }
+		 }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
