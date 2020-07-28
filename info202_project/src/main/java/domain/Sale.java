@@ -19,6 +19,14 @@ public class Sale {
 	private LocalDateTime date;
 	private String status;
 	private Customer customer;
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public Collection<SaleItem> getItems() {
+		return items;
+	}
 	private Collection<SaleItem> items = new ArrayList<>();
 
 	public Integer getSaleID() {
@@ -31,6 +39,14 @@ public class Sale {
 
 	public String getStatus() {
 		return status;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public void setItems(Collection<SaleItem> items) {
+		this.items = items;
 	}
 
 	public void setSaleID(Integer saleID) {
@@ -49,7 +65,7 @@ public class Sale {
 		BigDecimal total = BigDecimal.ZERO;
 	
 		for (SaleItem item : items) {
-			total.add(item.getItemTotal());
+			total = total.add(item.getItemTotal());
 		}
 		
 		return total;
