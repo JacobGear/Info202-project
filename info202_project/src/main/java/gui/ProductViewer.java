@@ -46,7 +46,7 @@ public class ProductViewer extends javax.swing.JDialog {
       btnEdit = new javax.swing.JButton();
       btnDelete = new javax.swing.JButton();
       jLabel1 = new javax.swing.JLabel();
-      jTextField1 = new javax.swing.JTextField();
+      txtSearch = new javax.swing.JTextField();
       btnSearch = new javax.swing.JButton();
       jLabel2 = new javax.swing.JLabel();
       jComboBox1 = new javax.swing.JComboBox<>();
@@ -78,13 +78,18 @@ public class ProductViewer extends javax.swing.JDialog {
 
       jLabel1.setText("Search by ID:");
 
-      jTextField1.addActionListener(new java.awt.event.ActionListener() {
+      txtSearch.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField1ActionPerformed(evt);
+            txtSearchActionPerformed(evt);
          }
       });
 
       btnSearch.setText("Search");
+      btnSearch.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnSearchActionPerformed(evt);
+         }
+      });
 
       jLabel2.setText("Category Filter:");
 
@@ -111,7 +116,7 @@ public class ProductViewer extends javax.swing.JDialog {
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jTextField1)
+                        .addComponent(txtSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch))
                      .addGroup(layout.createSequentialGroup()
@@ -127,7 +132,7 @@ public class ProductViewer extends javax.swing.JDialog {
                   .addGap(9, 9, 9)
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                      .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                .addGroup(layout.createSequentialGroup()
                   .addContainerGap()
                   .addComponent(btnSearch)))
@@ -171,9 +176,15 @@ public class ProductViewer extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-   private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+   private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_jTextField1ActionPerformed
+   }//GEN-LAST:event_txtSearchActionPerformed
+
+   private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+      // TODO add your handling code here:
+		String productID = txtSearch.getText();
+		productsModel.updateItems(pDAO.searchByID(productID));
+   }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,7 +237,7 @@ public class ProductViewer extends javax.swing.JDialog {
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JTextField jTextField1;
    private javax.swing.JList<Product> listProducts;
+   private javax.swing.JTextField txtSearch;
    // End of variables declaration//GEN-END:variables
 }

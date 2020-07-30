@@ -41,10 +41,12 @@ public class ProductCollectionsDAO {
     }
 	 
 	 public Product searchByID(String productID){
+		 Product p;
 		 if(ids.containsKey(productID)){
-			 return Product;
+			 p = ids.get(productID);
 		 }else{
 			 return null;
 		 }
+		 return p;
 	 }
 }
