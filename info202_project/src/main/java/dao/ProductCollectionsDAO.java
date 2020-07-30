@@ -5,6 +5,8 @@
  */
 package dao;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import domain.Product;
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,16 +18,20 @@ import java.util.Map;
  * @author Admin
  */
 public class ProductCollectionsDAO {
-    private static Collection<Product> products = new HashSet<>();
-    private static Collection<String> categories = new HashSet<>();
-	 private static Map<String, Product> ids = new HashMap<>();
+    private static final Collection<Product> products = new HashSet<>();
+    private static final Collection<String> categories = new HashSet<>();
+    private static final Map<String, Product> ids = new HashMap<>();
+    private static final Multimap<String, Product> viewerCategories = HashMultimap.create();
     
-    public void saveProduct(Product p){
+    public void saveProduct(Product p) {
         products.add(p);
+        
         String category = p.getCategory();
         categories.add(category);
-		  String id = p.getProductID();
-		  ids.put(id, p);
+        viewerCategories.put(category, p);
+        
+        String id = p.getProductID();
+        ids.put(id, p); // match a product with a key        
     }
     
     public Collection<Product> getProducts(){
@@ -36,17 +42,28 @@ public class ProductCollectionsDAO {
         products.remove(p);
     }
     
-    public Collection<String> getCategories(){
+    public Collection<String> getCategories() {
         return categories;
     }
-	 
-	 public Product searchByID(String productID){
-		 Product p;
-		 if(ids.containsKey(productID)){
-			 p = ids.get(productID);
-		 }else{
-			 return null;
-		 }
-		 return p;
-	 }
+
+    public Product searchByID(String productID) {
+        Product p;
+        if (ids.containsKey(productID)) {
+            // Map.get() will get the Product domain, with the key
+            p = ids.get(productID); 
+        } else {
+            return null;
+        }
+        return p;
+    }
+    
+    public Collection<Product> filterByCategory(String category) {
+        Collection<Product> p = new HashSet<>();
+        if (!viewerCategories.containsKey(category)) {
+            return null;
+        } else {
+            p = viewerCategories.get(category);
+        }
+        return p;
+    }
 }
