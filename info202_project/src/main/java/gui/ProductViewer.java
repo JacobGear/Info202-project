@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
 public class ProductViewer extends javax.swing.JDialog {
 
     ProductCollectionsDAO pDAO = new ProductCollectionsDAO();
-    SimpleListModel productsModel = new SimpleListModel();    
+    SimpleListModel productsModel = new SimpleListModel(); 
+    SimpleListModel productsMode2 = new SimpleListModel();  
     
     /**
      * Creates new form ProductViewer
@@ -29,9 +30,10 @@ public class ProductViewer extends javax.swing.JDialog {
         Collection<Product> products = pDAO.getProducts();
         productsModel.updateItems(products);
         listProducts.setModel(productsModel);
+        
         Collection<String> categories = pDAO.getCategories();
-        productsModel.updateItems(categories);
-        cmbCategories.setModel(productsModel);
+        productsMode2.updateItems(categories);
+        cmbCategories.setModel(productsMode2);
     }
 
     /**
@@ -200,7 +202,7 @@ public class ProductViewer extends javax.swing.JDialog {
     private void cmbCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriesActionPerformed
         // TODO add your handling code here:
         String category = String.valueOf(cmbCategories.getSelectedItem());
-        productsModel.updateItems(pDAO.filterByCategory(category));
+        productsMode2.updateItems(pDAO.filterByCategory(category));
     }//GEN-LAST:event_cmbCategoriesActionPerformed
 
     /**
