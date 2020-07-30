@@ -202,7 +202,7 @@ public class ProductViewer extends javax.swing.JDialog {
     private void cmbCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriesActionPerformed
         // TODO add your handling code here:
         String category = String.valueOf(cmbCategories.getSelectedItem());
-        productsMode2.updateItems(pDAO.filterByCategory(category));
+        productsModel.updateItems(pDAO.filterByCategory(category));
     }//GEN-LAST:event_cmbCategoriesActionPerformed
 
     /**
