@@ -45,6 +45,14 @@ public class ProductCollectionsDAO {
     public Collection<String> getCategories() {
         return categories;
     }
+    
+    public Map<String, Product> getIds(){
+        return ids;
+    }
+    
+    public Multimap<String, Product> getViewerCategories(){
+        return viewerCategories;
+    }
 
     public Product searchByID(String productID) {
         Product p;
@@ -58,7 +66,7 @@ public class ProductCollectionsDAO {
     }
     
     public Collection<Product> filterByCategory(String category) {
-        Collection<Product> p = new HashSet<>();
+        Collection<Product> p;
         if (!viewerCategories.containsKey(category)) {
             return null;
         } else {
