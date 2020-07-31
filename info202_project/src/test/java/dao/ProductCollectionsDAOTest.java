@@ -7,6 +7,7 @@ package dao;
 
 import domain.Product;
 import java.math.BigDecimal;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -44,7 +45,7 @@ public class ProductCollectionsDAOTest {
         product2.setProductID("9876");
         product2.setName("Bottle");
         product2.setDescription("Cool looking bottle");
-        product2.setCategory("Item 1");
+        product2.setCategory("Item 2");
         product2.setListPrice(listprice2 = new BigDecimal("3.99"));
         product2.setQuantityInStock(quantity2 = new BigDecimal("50"));
         
@@ -53,25 +54,28 @@ public class ProductCollectionsDAOTest {
         product3.setProductID("46346");
         product3.setName("Glass");
         product3.setDescription("Cool looking glass");
-        product3.setCategory("Item 3");
+        product3.setCategory("Item 1");
         product3.setListPrice(listprice2 = new BigDecimal("45.50"));
         product3.setQuantityInStock(quantity2 = new BigDecimal("7"));
         
         pDAO.saveProduct(product1);
         pDAO.saveProduct(product2);
+        pDAO.saveProduct(product3);
     }
     
     @AfterEach
     public void tearDown() {
         pDAO.removeProduct(product1);
         pDAO.removeProduct(product2);
+        pDAO.removeProduct(product3);
     }
 
     @Test
     public void testSaveProduct() {
         assertThat(pDAO.getProducts(), hasItem(product1));
         assertThat(pDAO.getProducts(), hasItem(product2));
-        assertThat(pDAO.getProducts(), hasSize(2));
+        assertThat(pDAO.getProducts(), hasItem(product3));
+        assertThat(pDAO.getProducts(), hasSize(3));
     }
 
     @Test
@@ -86,12 +90,29 @@ public class ProductCollectionsDAOTest {
         int size = pDAO.getCategories().size();
         assertThat(pDAO.getCategories(), hasSize(size));
     }
+    
+    @Test
+    public void testSearchByID() {
+        // check that searchbyid is returning the product with the matching category
+        String s = product1.getProductID();
+        assertThat(pDAO.searchByID(s), equalTo(product1));
+        assertThat(pDAO.searchByID(s), not(equalTo(product2)));
+    }
+    
+    @Test
+    public void testFilterCategories(){
+        //String s = product1.getCategory();
+        String s = "Item 1";
+        assertThat(pDAO.filterByCategory(s), hasItem(product1));
+        assertThat(pDAO.filterByCategory(s), hasItem(product3));
+        assertThat(pDAO.filterByCategory(s), not(hasItem(product2)));
+    }
 
     @Test
     public void testRemoveProduct() {
         pDAO.removeProduct(product1);
         assertThat(pDAO.getProducts(), not(hasItem(product1)));
-        assertThat(pDAO.getProducts(), hasSize(1));
+        assertThat(pDAO.getProducts(), hasSize(2));
     }
     
     
