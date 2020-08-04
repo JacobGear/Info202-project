@@ -19,6 +19,15 @@ public class Product {
 	private BigDecimal listPrice;
 	private BigDecimal quantityInStock;
 
+	public Product(String productID, String name, String description, String category, BigDecimal listPrice, BigDecimal quantityInStock) {
+		this.productID = productID;
+		this.name = name;
+		this.description = description;
+		this.category = category;
+		this.listPrice = listPrice;
+		this.quantityInStock = quantityInStock;
+	}
+
 	public String getProductID() {
 		return productID;
 	}
