@@ -17,12 +17,13 @@ import java.util.Map;
  *
  * @author Admin
  */
-public class ProductCollectionsDAO {
+public class ProductCollectionsDAO implements ProductDAO {
     private static final Collection<Product> products = new HashSet<>();
     private static final Collection<String> categories = new HashSet<>();
     private static final Map<String, Product> ids = new HashMap<>();
     private static final Multimap<String, Product> viewerCategories = HashMultimap.create();
     
+	@Override
     public void saveProduct(Product p) {
         products.add(p);
         
@@ -34,18 +35,22 @@ public class ProductCollectionsDAO {
         ids.put(id, p); // match a product with a key        
     }
     
+	@Override
     public Collection<Product> getProducts(){
       return products;
     }
     
+	@Override
     public void removeProduct(Product p){
         products.remove(p);
     }
     
+	@Override
     public Collection<String> getCategories() {
         return categories;
     }
     
+	@Override
     public Map<String, Product> getIds(){
         return ids;
     }
@@ -54,6 +59,7 @@ public class ProductCollectionsDAO {
         return viewerCategories;
     }
 
+	@Override
     public Product searchByID(String productID) {
         Product p;
         if (ids.containsKey(productID)) {
@@ -65,6 +71,7 @@ public class ProductCollectionsDAO {
         return p;
     }
     
+	@Override
     public Collection<Product> filterByCategory(String category) {
         Collection<Product> p;
         if (!viewerCategories.containsKey(category)) {
