@@ -11,6 +11,9 @@ import helpers.SimpleListModel;
 import java.math.BigDecimal;
 import java.util.Collection;
 import javax.swing.JOptionPane;
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
+import net.sf.oval.exception.ConstraintsViolatedException;
 
 /**
  *
@@ -18,8 +21,9 @@ import javax.swing.JOptionPane;
  */
 public class ProductEditor extends javax.swing.JDialog {
 
-    ProductJdbcDAO pDAO = new ProductJdbcDAO();
-    SimpleListModel productsModel = new SimpleListModel();
+	ProductJdbcDAO pDAO = new ProductJdbcDAO();
+	SimpleListModel productsModel = new SimpleListModel();
+
 	/**
 	 * Creates new form ProductEditor
 	 */
@@ -27,9 +31,9 @@ public class ProductEditor extends javax.swing.JDialog {
 		super(parent, modal);
 		initComponents();
 		cmboCategory.setEditable(true);
-                Collection<String> categories = pDAO.getCategories();
-                productsModel.updateItems(categories);
-                cmboCategory.setModel(productsModel);
+		Collection<String> categories = pDAO.getCategories();
+		productsModel.updateItems(categories);
+		cmboCategory.setModel(productsModel);
 	}
 
 	/**
@@ -193,47 +197,59 @@ public class ProductEditor extends javax.swing.JDialog {
    }// </editor-fold>//GEN-END:initComponents
 
    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
-      // TODO add your handling code here:
+		// TODO add your handling code here:
    }//GEN-LAST:event_txtIdActionPerformed
 
    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-      // TODO add your handling code here:
+		// TODO add your handling code here:
 		String name;
 		String id;
 		String description;
-		String category; 
+		String category;
 		BigDecimal price;
 		BigDecimal quantity;
-		
-		try{
-		id = txtId.getText();
-		name = txtName.getText();
-		description = txtDescription.getText();
-		category = (String) cmboCategory.getSelectedItem();
-		price = new BigDecimal(txtPrice.getText());
-		quantity = new BigDecimal(txtQuantity.getText());
-		
-		Product p = new Product();
-		p.setProductID(id);
-		p.setName(name);
-		p.setDescription(description);
-		p.setCategory(category);
-		p.setListPrice(price);
-		p.setQuantityInStock(quantity);
-                
-                pDAO.saveProduct(p);
-                System.out.println(p);
-		dispose();
-		
-		}catch(NumberFormatException e){
+
+		try {
+			id = txtId.getText();
+			name = txtName.getText();
+			description = txtDescription.getText();
+			category = (String) cmboCategory.getSelectedItem();
+			price = new BigDecimal(txtPrice.getText());
+			quantity = new BigDecimal(txtQuantity.getText());
+
+			Product p = new Product();
+			p.setProductID(id);
+			p.setName(name);
+			p.setDescription(description);
+			p.setCategory(category);
+			p.setListPrice(price);
+			p.setQuantityInStock(quantity);
+
+			new Validator().assertValid(p);
+			pDAO.saveProduct(p);
+			System.out.println(p);
+			dispose();
+
+		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(this,
 					  "You have entered a price or quantity that is not a valid number.",
 					  "Input Error", JOptionPane.ERROR_MESSAGE);
+		} catch (ConstraintsViolatedException ex) {
+
+			// get the violated constraints from the exception
+			ConstraintViolation[] violations = ex.getConstraintViolations();
+
+			// create a nice error message for the user
+			String msg = "Please fix the following input problems:";
+			for (ConstraintViolation cv : violations) {
+				msg += "\n  - " + cv.getMessage();
+			}
+
+			// display the message to the user
+			JOptionPane.showMessageDialog(this, msg, "Input Error", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
-		
-		
+
+
    }//GEN-LAST:event_btnSaveActionPerformed
 
    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
