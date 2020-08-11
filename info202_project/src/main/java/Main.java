@@ -1,4 +1,7 @@
 
+import dao.ProductCollectionsDAO;
+import dao.ProductDAO;
+import dao.ProductJdbcDAO;
 import gui.MainMenu;
 
 /*
@@ -13,12 +16,14 @@ import gui.MainMenu;
  */
 public class Main {
 
+	private static final ProductDAO pDAO = new ProductJdbcDAO();
+//	private static final ProductDAO pDAO = new ProductCollectionsDAO();
 	/**
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
 		// TODO code application logic here
-		MainMenu menu = new MainMenu();
+		MainMenu menu = new MainMenu(pDAO);
 		menu.setLocationRelativeTo(null);
 		menu.setVisible(true);
 	}
