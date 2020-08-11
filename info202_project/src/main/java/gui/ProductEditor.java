@@ -5,6 +5,7 @@
  */
 package gui;
 
+import dao.DAOException;
 import dao.ProductJdbcDAO;
 import domain.Product;
 import helpers.SimpleListModel;
@@ -247,6 +248,8 @@ public class ProductEditor extends javax.swing.JDialog {
 
 			// display the message to the user
 			JOptionPane.showMessageDialog(this, msg, "Input Error", JOptionPane.ERROR_MESSAGE);
+		} catch (DAOException ex) {
+			JOptionPane.showMessageDialog(this, ex.getMessage(), "Database Error",  JOptionPane.ERROR_MESSAGE);
 		}
 
 
