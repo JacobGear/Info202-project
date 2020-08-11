@@ -10,6 +10,7 @@ import domain.Product;
 import helpers.SimpleListModel;
 import java.math.BigDecimal;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -224,8 +225,10 @@ public class ProductEditor extends javax.swing.JDialog {
                 System.out.println(p);
 		dispose();
 		
-		}catch(Exception e){
-			System.out.println("Make sure all the fields have been filled!");
+		}catch(NumberFormatException e){
+			JOptionPane.showMessageDialog(this,
+					  "You have entered a price or quantity that is not a valid number.",
+					  "Input Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		
