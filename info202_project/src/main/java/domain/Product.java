@@ -16,7 +16,10 @@ import net.sf.oval.constraint.NotNull;
  * @author geaja121
  */
 public class Product {
-	private String productID;
+	@NotNull(message = "ID must be provided.")
+	@NotBlank(message = "ID must be provided.")
+	@Length(min = 4, message = "ID must contain at least four characters.")
+        private String productID;
 	
 	@NotNull(message = "Name must be provided.")
 	@NotBlank(message = "Name must be provided.")
@@ -24,12 +27,19 @@ public class Product {
 	private String name;
 	
 	private String description;
+        
+        @NotNull(message = "Category must be provided.")
+	@NotBlank(message = "Category must be provided.")
 	private String category;
 	
 	@NotNull(message = "Price must be provided.")
+        @NotBlank(message = "Price must be provided.")
 	@NotNegative(message = "Price must be zero or greater.")
 	private BigDecimal listPrice;
 	
+        @NotNull(message = "Quantity must be provided.")
+        @NotBlank(message = "Quantity must be provided.")
+	@NotNegative(message = "Quantity must be zero or greater.")
 	private BigDecimal quantityInStock;
 
 	public Product() {
