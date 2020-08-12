@@ -1,0 +1,69 @@
+@startuml
+
+skinparam {
+  Style StrictUML
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+actor "User" as user
+participant ":Main" as main
+participant "MainMenu" as menu <<frame>>
+participant "dao:ProductJdbcDAO" as dao <<ProductDAO>>
+participant ":ProductViewer" as dialog <<?dialog?>>
+participant "dao\n:ProductJdbcDAO" as dao <<Product?DAO?>>
+participant "productModel\n:SimpleListModel" as model
+participant "productModel\n:SimpleListModel2" as model2 
+database "H2\nDatabase" as db
+create menu
+main -> menu : <<construct>>
+
+user -> menu++ : clicks 'View Products'
+
+create dialog
+menu -> dialog++ : <<construct>>
+
+dialog -> dao : getProducts()
+dao++
+dao -> db++ : select all products in database
+return ResultSet
+return products
+create model
+dialog -> model : «?construct?»
+dialog -> model++ : updateItems(products)
+model--
+dialog -> dialog : listProducts.setModel(productsModel);
+
+dialog -> dao : getCategories()
+dao++
+dao -> db++ : select all categories in database
+return ResultSet
+return categories
+create model2
+dialog -> model2 : «?construct?»
+dialog -> model2++ : updateItems(categories)
+model2--
+dialog -> dialog : cmbCategories.setModel(productsModel2);
+return
+
+user -> dialog++ : enters product details into the search bar
+
+user -> dialog : clicks 'Search'
+dialog -> dialog : productId = txtSearch.getText()
+dialog -> dao++ : searchByID(productID)
+dao -> db++ : select product from database that matches productID
+return ResultSet
+return product
+
+dialog -> model++ : updateItems(product)
+
+user -> dialog : user clicks close
+dialog -> dialog : dispose()
+dialog -->  menu
+destroy dialog
+@enduml
+
