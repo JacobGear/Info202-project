@@ -29,7 +29,9 @@ public class ProductCollectionsDAOTest {
     
     @BeforeEach
     public void setUp() {
-        pDAO = new ProductCollectionsDAO();
+        //pDAO = new ProductCollectionsDAO();
+        
+        ProductDAO pDAO = new ProductJdbcDAO("jdbc:h2:mem:tests;INIT=runscript from 'src/main/java/dao/schema.sql'");
         
         BigDecimal listprice, quantity;
         product1 = new Product();
