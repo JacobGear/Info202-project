@@ -22,7 +22,8 @@ import org.junit.jupiter.api.Test;
  */
 public class ProductCollectionsDAOTest {
     
-    private ProductCollectionsDAO pDAO;
+    //private ProductCollectionsDAO pDAO;
+    private ProductDAO pDAO;
     private Product product1;
     private Product product2;
     private Product product3;    
@@ -31,7 +32,7 @@ public class ProductCollectionsDAOTest {
     public void setUp() {
         //pDAO = new ProductCollectionsDAO();
         
-        ProductDAO pDAO = new ProductJdbcDAO("jdbc:h2:mem:tests;INIT=runscript from 'src/main/java/dao/schema.sql'");
+        pDAO = new ProductJdbcDAO("jdbc:h2:mem:tests;INIT=runscript from 'src/main/java/dao/schema.sql'");
         
         BigDecimal listprice, quantity;
         product1 = new Product();
