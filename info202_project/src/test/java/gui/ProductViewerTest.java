@@ -7,17 +7,21 @@ package gui;
 
 import dao.ProductDAO;
 import domain.Product;
+import helpers.SimpleListModel;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 import org.assertj.swing.core.BasicRobot;
 import org.assertj.swing.core.Robot;
+import static org.assertj.swing.core.matcher.DialogMatcher.withTitle;
+import static org.assertj.swing.core.matcher.JButtonMatcher.withText;
 import org.assertj.swing.fixture.DialogFixture;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertThat;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +38,9 @@ public class ProductViewerTest {
     private ProductDAO dao;
     private DialogFixture fixture;
     private Robot robot;
+    
+    Product apple = new Product("1234", "apple", "a description", "fruit", BigDecimal.valueOf(1.99), BigDecimal.valueOf(20));
+    Product orange = new Product("4321", "orange", "a description", "fruit", BigDecimal.valueOf(2.99), BigDecimal.valueOf(200));
 
     @BeforeEach
     public void setUp() {
@@ -41,10 +48,8 @@ public class ProductViewerTest {
 
         robot.settings().delayBetweenEvents(75);
 
-        Product apple = new Product("1234", "apple", "a description", "fruit", BigDecimal.valueOf(1.99), BigDecimal.valueOf(20));
-        Product orange = new Product("4321", "orange", "a description", "fruit", BigDecimal.valueOf(2.99), BigDecimal.valueOf(200));
-
         Collection<Product> products = new ArrayList<>();
+
         products.add(apple);
         products.add(orange);
 
@@ -58,6 +63,7 @@ public class ProductViewerTest {
         fixture.cleanUp();
     }
 
+    
     @Test
     public void testViewAllProducts() {
         ProductViewer dialog = new ProductViewer(null, true, dao);
@@ -68,9 +74,13 @@ public class ProductViewerTest {
 
         fixture.click();
         
-        //from here we've opened the dialog
-
+        SimpleListModel model = (SimpleListModel) fixture.list("productsModel").target().getModel();
         
+        //from here we've opened the dialog 
+        
+        assertTrue("list contains the expected product", model.contains(apple));
+        assertTrue("list contains the expected product", model.contains(orange));
+        assertEquals("list contains the correct number of products", 2, model.getSize());
     }
     
      @Test
@@ -83,9 +93,13 @@ public class ProductViewerTest {
 
         fixture.click();
         
-        // Click on a product
+        fixture.list().selectItem(orange.toString());
         
         fixture.button("btnDelete").click();
+        
+        DialogFixture confirmDialog = fixture.dialog(withTitle("Select an Option").andShowing()).requireVisible();
+        
+        confirmDialog.button(withText("Yes")).click();
         
         ArgumentCaptor<Product> argument = ArgumentCaptor.forClass(Product.class);
 
@@ -95,11 +109,7 @@ public class ProductViewerTest {
         // retrieve the deleted student from the captor
         Product removedProduct = argument.getValue();
 
-        assertThat("Ensure the product was removed", dao.getProducts(), not(hasItem(removedProduct)));  
-        
-        
-        
-      
+        assertThat(removedProduct, is(orange));        
     }
     
 
