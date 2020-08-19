@@ -74,7 +74,7 @@ public class ProductViewerTest {
 
         fixture.click();
         
-        SimpleListModel model = (SimpleListModel) fixture.list("productsModel").target().getModel();
+        SimpleListModel model = (SimpleListModel) fixture.list("listProducts").target().getModel();
         
         //from here we've opened the dialog 
         
