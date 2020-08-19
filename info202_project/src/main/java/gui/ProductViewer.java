@@ -60,6 +60,7 @@ public class ProductViewer extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        listProducts.setName("listProducts"); // NOI18N
         jScrollPane1.setViewportView(listProducts);
 
         btnClose.setText("Close");
