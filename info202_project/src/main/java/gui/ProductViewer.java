@@ -77,6 +77,7 @@ public class ProductViewer extends javax.swing.JDialog {
         });
 
         btnDelete.setText("Delete");
+        btnDelete.setName("btnDelete"); // NOI18N
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
