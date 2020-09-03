@@ -62,3 +62,14 @@ task deleteEmptySourceDirs {
       }
    }
 }
+
+sourceSets {
+   web {
+      resources {
+         srcDirs = ['public']
+      }
+      java {
+         srcDirs = []
+      }
+   }
+}
