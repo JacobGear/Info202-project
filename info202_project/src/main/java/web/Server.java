@@ -7,6 +7,7 @@ package web;
 
 import dao.CustomerCollectionsDAO;
 import dao.CustomerDAO;
+import dao.CustomerJdbcDAO;
 import dao.ProductDAO;
 import dao.ProductJdbcDAO;
 import java.util.concurrent.CompletableFuture;
@@ -20,7 +21,7 @@ import org.jooby.json.Gzon;
 public class Server extends Jooby{
     
     ProductDAO productDao = new ProductJdbcDAO();
-    CustomerDAO customerDao = new CustomerCollectionsDAO();
+    CustomerDAO customerDao = new CustomerJdbcDAO();
     
     public static void main(String[] args) throws Exception {
         System.out.println("\nStarting Server.");
