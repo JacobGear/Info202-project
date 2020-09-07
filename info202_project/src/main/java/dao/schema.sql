@@ -17,3 +17,13 @@ create table Product (
 	quantityInStock decimal not null,
 	constraint Product_PK primary key (productID)
 );
+
+create table Customer (
+    username varchar(15),
+    firstName varchar(20) not null,
+    surname varchar(20) not null,
+    password varchar(30) not null,
+    emailAddress varchar(30) not null,
+    shippingAddress varchar(100) not null,
+    constraint Customer_PK primary key (username)
+);
