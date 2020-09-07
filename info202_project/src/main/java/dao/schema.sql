@@ -27,3 +27,10 @@ create table Customer (
     shippingAddress varchar(100) not null,
     constraint Customer_PK primary key (username)
 );
+
+INSERT INTO Customer (username, firstName, surname, password, emailAddress, shippingAddress)
+VALUES ('boris', 'Boris', 'McNorris', 'guest', 'boris@example.net', '123 Some Street, North East Valley Dunedin');
+
+INSERT INTO Customer (username, firstName, surname, password, emailAddress, shippingAddress)
+VALUES ('doris', 'Doris', 'Dolores', 'guest', 'doris@example.net', '321 Anywere Ave, St Clair, Dunedin');
+
