@@ -22,5 +22,12 @@ public class ProductModule extends Jooby{
             String id = req.param("id").value();
             return productDao.searchByID(id);
         });
+        
+        get("/api/categories", () -> productDao.getCategories());
+        
+        get("/api/categories/:category", (req) -> {
+            String category = req.param("category").value();
+            return productDao.filterByCategory(category);
+        });
     }
 }
