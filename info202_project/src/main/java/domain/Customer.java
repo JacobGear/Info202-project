@@ -18,6 +18,18 @@ public class Customer {
 	private String emailAddress;
 	private String shippingAddress;
 
+    public Customer() {
+    }
+        
+        public Customer(String username, String firstName, String surname, String password, String emailAddress, String shippingAddress) {
+            this.username = username;
+            this.firstName = firstName;
+            this.surname = surname;
+            this.password = password;
+            this.emailAddress = emailAddress;
+            this.shippingAddress = shippingAddress;
+        }
+        
 	public Integer getCustomerID() {
 		return customerID;
 	}
