@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>quantity to purchase</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+        .quantity_title {
+                font-family: "Comic Sans MS", cursive, sans-serif;
+                color: black;
+                background-color: grey;
+                text-align: center;
+                font-size: 40px;
+            }
+        .quantity_buttons {
+                font-family: "Comic Sans MS", cursive, sans-serif;
+                text-align: center;
+                font-size: 12px;
+        }
+        table{
+                font-family: "Comic Sans MS", cursive, sans-serif;
+                
+                border-collapse: separate;
+                border-spacing: 30px;
+                text-align: left;
+                margin-left: auto;
+                margin-right: auto;
+                border-collapse: collapse;
+                border: 1px solid black;
+                width: 100%;
+                height: 50px;
+            }
+            td {               
+                font-size: 14px;
+                 border-bottom: 1px dotted black;
+            }
+            th {                
+                font-size: 20px;
+                font-weight: bold;
+                 border-bottom: 1px dotted black;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div class = "quantity_buttons">
+            <button  type="submit">Home</button>
+            <button type="submit">Browse Products</button>
+            <button type="submit">View Cart</button>
+            <button type="submit">Sign Out</button>
+            Welcome dynamic text
+        </div><br>
+        
+        <div class="quantity_title">How many do you want to buy?</div><br>
+        
+        <table>
+            <tr>
+                <th>ID: </th>
+                <td>ID dynamic</td>                                
+            </tr>
+            
+            <tr>
+                <th>Name: </th>
+                <td>Name dynamic</td>                                
+            </tr>
+            
+            <tr>
+                <th>Description: </th>
+                <td>Description dynamic</td>                               
+            </tr>
+            
+            <tr>
+                <th>Price: </th>
+                <td>Price dynamic</td>                                
+            </tr>
+            
+            <tr>
+                <th>Quantity: </th>
+                <td>Quantity dynamic</td>                                
+            </tr>            
+        </table><br>
+        
+        <form action="auth" method="post">
+            <fieldset>
+                <legend>Quantity to buy</legend>
+                <label for="quantity">How many?</label>
+                <input id="quantity" type="text" name="quantity">                
+                <button type="submit">Add to cart</button>
+            </fieldset>
+        </form>
+    </body>
+</html>
