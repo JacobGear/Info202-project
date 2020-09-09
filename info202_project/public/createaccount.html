@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Create an Account</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel = "stylesheet" type = "text/css" href = "css/style.css">        
+    
+    </head>
+    
+    <body>
+        <div class ="account_buttons">
+            <button type="submit">Home</button>
+            <button type="submit">Sign in</button>
+        </div><br>
+        
+        <div class = "account_title">Create an Account</div><br>
+        
+        <form action="auth" method="post">
+            <fieldset>
+                <legend>Account Details</legend>
+                
+                <div class = "account_form" >
+                    <label for="username">User Name:</label>
+                    <input id="username" type="text" name="username">
+
+                    <br><br><label for="firstname">First Name:</label>
+                    <input id="firstname" type="text" name="firstname">
+
+                    <br><br><label for="lastname">Last Name:</label>
+                    <input id="lastname" type="text" name="lastname">
+
+                    <br><br><label for="email">Email:</label>
+                    <input id="email" type="text" name="email">
+
+                    <br><br><label for="password">Password:</label>
+                    <input id="password" type="password" name="password">
+                </div>
+                
+                <div class="form_buttons">
+                    <br><button type="submit">Create Account</button>
+                </div>                
+            </fieldset>
+        </form>
+    </body>
+</html>
+
