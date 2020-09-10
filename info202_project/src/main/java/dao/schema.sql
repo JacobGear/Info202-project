@@ -24,7 +24,7 @@ create table Customer (
     surname varchar(20) not null,
     password varchar(30) not null,
     emailAddress varchar(30) not null,
-    shippingAddress varchar(100) not null,
+    shippingAddress varchar(100),
     constraint Customer_PK primary key (username)
 );
 
