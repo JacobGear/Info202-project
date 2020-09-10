@@ -29,10 +29,13 @@ and open the template in the editor.
         <div><h2 class="products_title">Products</h2></div>
 
         <div class = "product_buttons2">
-            <button type="submit">All</button>
-            <button type="submit">Doohickies</button>
-            <button type="submit">Widgets</button>
-            <button type="submit">Frobnostificators</button>
+            <button type="button" ng-click="prodCtrl.allProducts()"
+                    >All</button>
+            <button type="button" ng-repeat="cat in prodCtrl.categories" 
+                    style="margin:5px" 
+                    ng-click="prodCtrl.selectCategory(cat)"
+                    >{{cat}}
+            </button>
         </div>
 
         <br>
@@ -51,7 +54,7 @@ and open the template in the editor.
                 <tr data-ng-repeat="product in prodCtrl.products">
                     <td>{{product.name}}</td>
                     <td>{{product.description}}</td>
-                    <td>{{product.listPrice}}</td>
+                    <td>${{product.listPrice}}</td>
                     <td>{{product.quantityInStock}}</td>
                     
                 </tr>                
