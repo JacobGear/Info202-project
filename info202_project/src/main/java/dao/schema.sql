@@ -19,14 +19,18 @@ create table Product (
 );
 
 create table Customer (
-    username varchar(15),
+    customerID bigint auto_increment(1000),
+    username varchar(15) unique,
     firstName varchar(20) not null,
     surname varchar(20) not null,
     password varchar(30) not null,
     emailAddress varchar(30) not null,
     shippingAddress varchar(100),
-    constraint Customer_PK primary key (username)
+    constraint Customer_PK primary key (customerid)
 );
+
+
+
 
 INSERT INTO Customer (username, firstName, surname, password, emailAddress, shippingAddress)
 VALUES ('boris', 'Boris', 'McNorris', 'guest', 'boris@example.net', '123 Some Street, North East Valley Dunedin');
