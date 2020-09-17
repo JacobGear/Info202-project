@@ -1,5 +1,56 @@
 "use strict";
 
+class SaleItem {
+
+    constructor(product, quantity) {
+        // only set the fields if we have a valid product
+        if (product) {
+            this.product = product;
+            this.quantityPurchased = quantity;
+            this.salePrice = product.listPrice;
+        }
+    }
+
+    getItemTotal() {
+        return this.salePrice * this.quantityPurchased;
+    }
+
+}
+
+class ShoppingCart {
+
+    constructor() {
+        this.items = new Array();
+    }
+
+    reconstruct(sessionData) {
+        for (let item of sessionData.items) {
+            this.addItem(Object.assign(new SaleItem(), item));
+        }
+    }
+
+    getItems() {
+        return this.items;
+    }
+
+    addItem(item) {
+        this.items.push(item);
+    }
+
+    setCustomer(customer) {
+        this.customer = customer;
+    }
+
+    getTotal() {
+        let total = 0;
+        for (let item of this.items) {
+            total += item.getItemTotal();
+        }
+        return total;
+    }
+
+}
+
 // create a new module, and load the other pluggable modules
 var module = angular.module('ShoppingApp', ['ngResource', 'ngStorage']);
 
@@ -19,6 +70,22 @@ module.factory('signInAPI', function ($resource) {
 module.factory('productsAPI', function ($resource) {
     return $resource('/api/products/');
 });
+module.factory('salesAPI', function ($resource) {
+    return $resource('/api/sales/');
+});
+
+module.factory('cart', function ($sessionStorage) {
+    let cart = new ShoppingCart();
+
+    // is the cart in the session storage?
+    if ($sessionStorage.cart) {
+
+        // reconstruct the cart from the session data
+        cart.reconstruct($sessionStorage.cart);
+    }
+
+    return cart;
+});
 
 // first controller
 module.controller('ProductController', function (productAPI, categoryAPI, productsAPI) {
@@ -34,10 +101,6 @@ module.controller('ProductController', function (productAPI, categoryAPI, produc
     this.allProducts = function () {
         this.products = productsAPI.query();
     };
-    
-     
-    
-   
 });
 module.controller('CustomerController', function (registerAPI, $window, signInAPI, $sessionStorage) {
     this.registerCustomer = function (customer) {
@@ -77,3 +140,29 @@ module.controller('CustomerController', function (registerAPI, $window, signInAP
                             };
 });
 
+module.controller('ShoppingCartController', function (cart, $sessionStorage, $window, salesAPI) {
+    this.items = cart.getItems();
+    this.total = cart.getTotal();
+    this.selectedProduct = $sessionStorage.product;
+    
+    this.buyProduct = function (product) {
+        $sessionStorage.product = product;
+        $window.location = 'quantity.html';
+    };
+    
+    this.addToCart = function (quantity) {
+       let sessionProduct = $sessionStorage.product;
+       let item = new SaleItem(sessionProduct, quantity);
+       cart.addItem(item);
+       $sessionStorage.cart = cart;
+       $window.location = 'products.html';
+    };
+    
+    this.checkout = function () {
+       let sessionCustomer = $sessionStorage.customer;
+       cart.setCustomer(sessionCustomer);
+       salesAPI.save(cart);
+       delete $sessionStorage.cart;
+       $window.location = 'thankyou.html';
+    };
+});
