@@ -26,7 +26,26 @@ create table Customer (
     password varchar(30) not null,
     emailAddress varchar(30) not null,
     shippingAddress varchar(100),
-    constraint Customer_PK primary key (customerid)
+    constraint Customer_PK primary key (customerID)
+);
+
+create table Sale (
+    saleID decimal auto_increment(500),
+    username bigint,
+    date timestamp not null,
+    status varchar(100),
+    constraint Sale_PK primary key (saleID),
+    constraint Sale_Customer foreign key (username) references Customer
+);
+
+create table SaleItem (
+    saleID decimal not null,
+    productID varchar(50), 
+    quantityPurchased bigint not null,
+    salePrice bigint not null,       
+    constraint SaleItem_PK primary key (saleID, productID),
+    constraint SaleItem_Product foreign key (productID) references Product,
+    constraint SaleItem_Sale foreign key (saleID) references Sale
 );
 
 
