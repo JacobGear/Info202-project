@@ -17,7 +17,9 @@ and open the template in the editor.
         <script src="js/shopping.js"></script>      
 
     </head>
-    <body ng-controller="ProductController as prodCtrl">
+    <body 
+        ng-controller="ProductController as prodCtrl"        
+        >
         <div class = "product_buttons">
             <button  type="submit">Home</button>
             <button type="submit">Browse Products</button>
@@ -47,16 +49,17 @@ and open the template in the editor.
                     <th>Description</th>
                     <th>Price</th>
                     <th>Available</th>
+                    <th>Buy Now</th>
 
                 </tr>
             </thead>
-            <tbody>
+            <tbody ng-controller="ShoppingCartController as cartCtrl">
                 <tr data-ng-repeat="product in prodCtrl.products">
                     <td>{{product.name}}</td>
                     <td>{{product.description}}</td>
                     <td>${{product.listPrice}}</td>
                     <td>{{product.quantityInStock}}</td>
-                    
+                    <td><button type="button" ng-click="cartCtrl.buyProduct(product)">Buy</button></td>
                 </tr>                
 
             </tbody>
