@@ -15,6 +15,7 @@ public class SaleItem {
 	private BigDecimal quantityPurchased;
 	private BigDecimal salePrice;
 	private Product product;
+        private Sale sale;
 
 	public BigDecimal getQuantityPurchased() {
 		return quantityPurchased;
@@ -36,4 +37,24 @@ public class SaleItem {
 		BigDecimal total = salePrice.multiply(quantityPurchased);
 		return total;
 	}
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Sale getSale() {
+        return sale;
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
+    }
+    
+    
+        
+        
 }
