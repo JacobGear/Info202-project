@@ -16,10 +16,10 @@ and open the template in the editor.
         <script src="js/shopping.js"></script>
     </head>
 
-    <body>
+    <body ng-controller="ProductController as prodCtrl">
         <div class ="account_buttons">
-            <button type="submit">Home</button>
-            <button type="submit">Sign in</button>
+            <button type="button" ng-click="prodCtrl.viewHome()">Home</button>
+            <button type="button" ng-click="prodCtrl.viewSignin()">Sign in</button>
         </div><br>
         
         <div class = "account_title">Create an Account</div><br>
