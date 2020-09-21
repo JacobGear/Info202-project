@@ -21,9 +21,9 @@ and open the template in the editor.
         ng-controller="ProductController as prodCtrl"        
         >
         <div class = "product_buttons">
-            <button  type="submit">Home</button>
-            <button type="submit">Browse Products</button>
-            <button type="submit">View Cart</button>
+            <button type="button" ng-click="prodCtrl.viewHome()">Home</button>
+            <button type="button" ng-click="prodCtrl.viewProducts()" >Browse Products</button>
+            <button type="button" ng-click="prodCtrl.viewCart()">View Cart</button>
             <button type="submit">Sign Out</button>
             Welcome dynamic text
         </div>
