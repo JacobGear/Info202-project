@@ -88,7 +88,7 @@ module.factory('cart', function ($sessionStorage) {
 });
 
 // first controller
-module.controller('ProductController', function (productAPI, categoryAPI, productsAPI) {
+module.controller('ProductController', function (productAPI, categoryAPI, productsAPI, $window) {
     //alert("in controller");
     this.products = productAPI.query();
     this.categories = categoryAPI.query();
@@ -100,6 +100,22 @@ module.controller('ProductController', function (productAPI, categoryAPI, produc
     
     this.allProducts = function () {
         this.products = productsAPI.query();
+    };
+    
+    this.viewProducts = function () {
+        $window.location = 'products.html';
+    };
+    
+    this.viewHome = function () {
+        $window.location = '.';
+    };
+    
+    this.viewSignin = function () {
+        $window.location = 'signin.html';
+    }; 
+    
+    this.viewCart = function () {
+        $window.location = 'cart.html';
     };
 });
 module.controller('CustomerController', function (registerAPI, $window, signInAPI, $sessionStorage) {
@@ -150,7 +166,8 @@ module.controller('ShoppingCartController', function (cart, $sessionStorage, $wi
         $window.location = 'quantity.html';
     };
     
-    this.addToCart = function (quantity) {
+    this.addToCart = function () {
+       let quantity = document.getElementById('quantity').value;
        let sessionProduct = $sessionStorage.product;
        let item = new SaleItem(sessionProduct, quantity);
        cart.addItem(item);
