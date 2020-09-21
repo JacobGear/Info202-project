@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="ShoppingApp">
+    <head>
+        <title>view cart</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel = "stylesheet" type = "text/css" href = "css/style.css"> 
+
+        <script src="js/angular.js"></script>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/ngStorage.js"></script>
+        <script src="js/shopping.js"></script>      
+
+    </head>
+    <body 
+        ng-controller="ProductController as prodCtrl"        
+        >
+        <div class = "product_buttons">
+            <button type="button" ng-click="prodCtrl.viewHome()">Home</button>
+            <button type="button" ng-click="prodCtrl.viewProducts()" >Browse Products</button>
+            <button type="button" ng-click="prodCtrl.viewCart()">View Cart</button>
+            <button type="submit">Sign Out</button>
+            Welcome dynamic text
+        </div>
+
+        <div><h2 class="products_title">Shopping Cart</h2></div>
+
+        <table class="product_table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+
+                </tr>
+            </thead>
+            <tbody ng-controller="ShoppingCartController as cartCtrl">
+                <tr data-ng-repeat="item in cartCtrl.items" >
+                    <td>{{item.product.name}}</td>
+                    <td>{{item.salePrice}}</td>
+                    <td>{{item.quantityPurchased}}</td>
+                    <td>${{item.salePrice*quantityPurchased}}</td>
+                </tr>                
+
+            </tbody>
+        </table>
+
+    </body>
+</html>
