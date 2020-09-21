@@ -15,10 +15,12 @@ and open the template in the editor.
         <script src="js/ngStorage.js"></script>
         <script src="js/shopping.js"></script>
     </head>
-    <body ng-controller="CustomerController as custCtrl">
-        <div class ="signin_buttons">
-            <button type="submit">Home</button>
-            <button type="submit">Sign in</button>
+    <body ng-controller="CustomerController as custCtrl"
+          >
+        <div class ="signin_buttons"
+          ng-controller="ProductController as prodCtrl">
+            <button type="button" ng-click="prodCtrl.viewHome()">Home</button>
+            <button type="button" ng-click="prodCtrl.viewSignin()">Sign in</button>
         </div><br>
        
         <div class = "signin_title">Sign In</div><br>
