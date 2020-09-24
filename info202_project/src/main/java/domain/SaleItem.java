@@ -6,6 +6,7 @@
 package domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  *
@@ -34,7 +35,8 @@ public class SaleItem {
 	}
 	
 	public BigDecimal getItemTotal(){
-		BigDecimal total = salePrice.multiply(quantityPurchased);
+		BigDecimal value = salePrice.multiply(quantityPurchased);
+                BigDecimal total = value.setScale(2, RoundingMode.CEILING);
 		return total;
 	}
 
@@ -53,6 +55,12 @@ public class SaleItem {
     public void setSale(Sale sale) {
         this.sale = sale;
     }
+
+    @Override
+    public String toString() {
+        return "SaleItem{" + "quantityPurchased=" + quantityPurchased + ", salePrice=" + salePrice + ", product=" + product + ", sale=" + sale + '}';
+    }
+    
     
     
         
