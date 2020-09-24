@@ -119,6 +119,7 @@ module.controller('ProductController', function (productAPI, categoryAPI, produc
     };
 });
 module.controller('CustomerController', function (registerAPI, $window, signInAPI, $sessionStorage) {
+    this.customer1 = $sessionStorage.customer;
     this.registerCustomer = function (customer) {
         registerAPI.save(null, customer,
             // success callback
@@ -154,11 +155,20 @@ module.controller('CustomerController', function (registerAPI, $window, signInAP
                                         }
                                 );
                             };
+                            
+    this.signOut = function () {
+        delete $sessionStorage.customer;
+        $window.location = 'thankyou.html';
+    };      
+    this.btnSignIn = function () {
+        $window.location = 'signin.html';
+    };
 });
 
 module.controller('ShoppingCartController', function (cart, $sessionStorage, $window, salesAPI) {
     this.items = cart.getItems();
-    this.total = cart.getTotal();
+    var num = cart.getTotal();
+    this.total = num.toFixed(2);
     this.selectedProduct = $sessionStorage.product;
     
     this.buyProduct = function (product) {
@@ -172,6 +182,7 @@ module.controller('ShoppingCartController', function (cart, $sessionStorage, $wi
        let item = new SaleItem(sessionProduct, quantity);
        cart.addItem(item);
        $sessionStorage.cart = cart;
+       delete $sessionStorage.product;
        $window.location = 'products.html';
     };
     
