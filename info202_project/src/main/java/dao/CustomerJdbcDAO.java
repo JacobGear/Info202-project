@@ -84,6 +84,7 @@ public class CustomerJdbcDAO implements CustomerDAO{
             while (rs.next()) {
 
                 // get the data out of the query
+                Integer customerID = rs.getInt("customerID");
                 String userName = rs.getString("username");
                 String firstName = rs.getString("firstName");
                 String surname = rs.getString("surname");
@@ -92,7 +93,7 @@ public class CustomerJdbcDAO implements CustomerDAO{
                 String shippingAddress = rs.getString("shippingAddress");
 
                 // use the data to create a student object
-                customer = new Customer(userName, firstName, surname, password, emailAddress, shippingAddress);
+                customer = new Customer(customerID, userName, firstName, surname, password, emailAddress, shippingAddress);
             }
 
             return customer;
@@ -125,6 +126,7 @@ public class CustomerJdbcDAO implements CustomerDAO{
             while (rs.next()) {
 
                 // get the data out of the query
+                Integer customerID = rs.getInt("customerID");
                 String userName = rs.getString("username");
                 String firstName = rs.getString("firstName");
                 String surname = rs.getString("surname");
@@ -133,7 +135,7 @@ public class CustomerJdbcDAO implements CustomerDAO{
                 String shippingAddress = rs.getString("shippingAddress");
 
                 // use the data to create a student object
-                Customer c = new Customer(userName, firstName, surname, passWord, emailAddress, shippingAddress);
+                Customer c = new Customer(customerID, userName, firstName, surname, passWord, emailAddress, shippingAddress);
                 customers.put(userName, c);
             }
             if (customers.containsKey(username)) {

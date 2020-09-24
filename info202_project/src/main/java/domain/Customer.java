@@ -21,7 +21,8 @@ public class Customer {
     public Customer() {
     }
         
-        public Customer(String username, String firstName, String surname, String password, String emailAddress, String shippingAddress) {
+        public Customer(Integer customerID, String username, String firstName, String surname, String password, String emailAddress, String shippingAddress) {
+            this.customerID = customerID;
             this.username = username;
             this.firstName = firstName;
             this.surname = surname;
@@ -85,6 +86,11 @@ public class Customer {
 	public void setShippingAddress(String shippingAddress) {
 		this.shippingAddress = shippingAddress;
 	}
+
+    @Override
+    public String toString() {
+        return "Customer{" + "customerID=" + customerID + ", username=" + username + ", firstName=" + firstName + ", surname=" + surname + ", password=" + password + ", emailAddress=" + emailAddress + ", shippingAddress=" + shippingAddress + '}';
+    }
 	
 	
 }
