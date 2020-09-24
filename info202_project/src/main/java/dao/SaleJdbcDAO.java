@@ -28,7 +28,7 @@ public class SaleJdbcDAO implements SaleDAO {
             try (
                     PreparedStatement insertSaleStmt = con.prepareStatement(
                             //**** SQL for saving Sale goes here ****
-                            "insert into sale (saleID, username, date, status) values (?,?,?,?)",
+                            "insert into sale (saleID, customerID, date, status) values (default, ?, ?, ?);",
                             Statement.RETURN_GENERATED_KEYS);
                     
                     PreparedStatement insertSaleItemStmt = con.prepareStatement(
@@ -62,16 +62,19 @@ public class SaleJdbcDAO implements SaleDAO {
                 // write code here that saves the timestamp and username in the
                 // sale table using the insertSaleStmt statement.
                 // ****
-                insertSaleStmt.setString(2, customer.getUsername());
-                insertSaleStmt.setTimestamp(3, timestamp);               
+                insertSaleStmt.setInt(1, customer.getCustomerID());
+                insertSaleStmt.setTimestamp(2, timestamp); 
+                insertSaleStmt.setString(3, "N"); 
+                insertSaleStmt.executeUpdate();
                 
                 // get the auto-generated sale ID from the database
                 ResultSet rs = insertSaleStmt.getGeneratedKeys();
 
-                Integer saleId = null;
+                Integer saleID = null;
 
                 if (rs.next()) {
-                    saleId = rs.getInt(1);
+                    saleID = rs.getInt(1);
+                    sale.setSaleID(saleID);
                 } else {
                     throw new DAOException("Problem getting generated sale ID");
                 }
@@ -84,10 +87,11 @@ public class SaleJdbcDAO implements SaleDAO {
                 // saves them using the insertSaleItemStmt statement.
                 // ****
                 for(SaleItem i : items){
-                    insertSaleItemStmt.setInt(1, i.getSale().getSaleID());
+                    insertSaleItemStmt.setInt(1, saleID);
                     insertSaleItemStmt.setString(2, i.getProduct().getProductID());
                     insertSaleItemStmt.setBigDecimal(3, i.getQuantityPurchased());
                     insertSaleItemStmt.setBigDecimal(4, i.getSalePrice());
+                    insertSaleItemStmt.executeUpdate();
                 }
                 
                 // ## update the product quantities ## //
@@ -101,6 +105,7 @@ public class SaleJdbcDAO implements SaleDAO {
                     BigDecimal bd = product.getQuantityInStock().subtract(item.getQuantityPurchased());
                     updateProductStmt.setBigDecimal(1, bd);
                     updateProductStmt.setString(2, product.getProductID());
+                    updateProductStmt.executeUpdate();
                 }
 
                 // commit the transaction
