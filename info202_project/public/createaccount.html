@@ -28,7 +28,7 @@ and open the template in the editor.
             ng-controller="CustomerController as custCtrl"
             ng-submit="custCtrl.registerCustomer(customer)"
             >
-            <fieldset>
+            <fieldset class="account_field">
                 <legend>Account Details</legend>
                 
                 <div class = "account_form" >
@@ -48,7 +48,7 @@ and open the template in the editor.
                     <input type="password" ng-model="customer.password" required>
                 </div>
                 
-                <div class="form_buttons">
+                <div class="center_buttons">
                     <br><button type="submit">Create Account</button>
                 </div>                
             </fieldset>
