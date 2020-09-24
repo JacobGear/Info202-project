@@ -13,8 +13,8 @@ create table Product (
 	name varchar(50) not null,
 	description varchar(50) not null,
 	category varchar(20) not null,
-	listprice decimal not null,
-	quantityInStock decimal not null,
+	listprice decimal(4,2) not null,
+	quantityInStock int not null,
 	constraint Product_PK primary key (productID)
 );
 
@@ -31,25 +31,25 @@ create table Customer (
 
 create table Sale (
     saleID decimal auto_increment(500),
-    username bigint,
-    date timestamp not null,
+    customerID bigint,
+    date timestamp default current_timestamp not null,
     status varchar(100),
     constraint Sale_PK primary key (saleID),
-    constraint Sale_Customer foreign key (username) references Customer
+    constraint Sale_Customer foreign key (customerID) references Customer
 );
 
 create table SaleItem (
     saleID decimal not null,
     productID varchar(50), 
     quantityPurchased bigint not null,
-    salePrice bigint not null,       
+    salePrice decimal(4,2) not null,       
     constraint SaleItem_PK primary key (saleID, productID),
     constraint SaleItem_Product foreign key (productID) references Product,
     constraint SaleItem_Sale foreign key (saleID) references Sale
 );
 
 
-
+insert into sale (saleID, customerID, date, status) values (default, 1234, default, 'status');
 
 INSERT INTO Customer (username, firstName, surname, password, emailAddress, shippingAddress)
 VALUES ('boris', 'Boris', 'McNorris', 'guest', 'boris@example.net', '123 Some Street, North East Valley Dunedin');
