@@ -7,9 +7,19 @@ and open the template in the editor.
     Created on : 8/09/2020, 8:33:22 PM
     Author     : Admin
 */
+html{
+    background-color: #F0F8FF;
+}
+table{
+    background-color: white;
+}
+button{
+    background-color: white;
+}
+
 .account_form{
     font-family: "Comic Sans MS", cursive, sans-serif;
-    text-align: center;
+    text-align: right;
     font-size: 12px;
 
 }            
@@ -26,12 +36,19 @@ and open the template in the editor.
     font-size: 40px;
 }
 legend{
-    text-align: left;  
+      
+}
+.account_field{
+    background-color: white;
+    width: 300px;
+    text-align: left;
+    margin: auto;
 }
 .form_buttons{
     font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 12px;
     margin: 0 auto;
+    text-align: right;
 }
 
 
@@ -40,6 +57,7 @@ legend{
     color: black;
     background-color: grey;
     text-align: center;
+    font-size: 40px;
 }
 .product_buttons {
     font-family: "Comic Sans MS", cursive, sans-serif;
@@ -65,7 +83,7 @@ legend{
     height: 50px;               
 }
 td {
-    border-bottom: 1px dotted black;
+    border-bottom: 1px solid black;
     font-size: 14px;
 }
 th {
@@ -100,6 +118,13 @@ th {
     height: 50px;
 }
 
+.quantity_field{
+    background-color: white;
+    width: 300px;
+    text-align: left;
+    margin: auto;
+}
+
 .signin_buttons{
     font-family: "Comic Sans MS", cursive, sans-serif;
     text-align: center;
@@ -115,3 +140,15 @@ th {
 .signin_text{
     text-align: center;
 }
+
+.signin_field{
+    background-color: white;
+    width: 300px;
+    text-align: right;
+    margin: auto;
+}
+
+.center_buttons{
+    text-align: center;
+}
+
