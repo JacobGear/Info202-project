@@ -158,7 +158,7 @@ module.controller('CustomerController', function (registerAPI, $window, signInAP
                             
     this.signOut = function () {
         delete $sessionStorage.customer;
-        $window.location = 'thankyou.html';
+        $window.location = '.';
     };      
     this.btnSignIn = function () {
         $window.location = 'signin.html';
