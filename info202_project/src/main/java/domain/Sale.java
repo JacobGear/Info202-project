@@ -19,6 +19,19 @@ public class Sale {
 	private LocalDateTime date;
 	private String status;
 	private Customer customer;
+        private Collection<SaleItem> items = new ArrayList<>();
+
+    public Sale() {
+    }
+        
+    public Sale(Integer saleID, LocalDateTime date, String status, Customer customer) {
+        this.saleID = saleID;
+        this.date = date;
+        this.status = status;
+        this.customer = customer;
+    }
+        
+        
 
 	public Customer getCustomer() {
 		return customer;
@@ -27,7 +40,8 @@ public class Sale {
 	public Collection<SaleItem> getItems() {
 		return items;
 	}
-	private Collection<SaleItem> items = new ArrayList<>();
+        
+	
 
 	public Integer getSaleID() {
 		return saleID;
