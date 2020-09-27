@@ -18,6 +18,18 @@ public class SaleItem {
 	private Product product;
         private Sale sale;
 
+    public SaleItem(BigDecimal quantityPurchased, BigDecimal salePrice, Product product, Sale sale) {
+        this.quantityPurchased = quantityPurchased;
+        this.salePrice = salePrice;
+        this.product = product;
+        this.sale = sale;
+    }
+
+    public SaleItem() {
+    }
+    
+        
+
 	public BigDecimal getQuantityPurchased() {
 		return quantityPurchased;
 	}
