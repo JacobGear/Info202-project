@@ -148,6 +148,10 @@ th {
     margin: auto;
 }
 
+.signin_leg{
+    text-align: left;
+}
+
 .center_buttons{
     text-align: center;
 }
