@@ -1,0 +1,34 @@
+@startuml
+
+skinparam {
+  Style StrictUML
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+actor "Customer" as customer
+participant "HomePage" as nav <<page>>
+participant "ProductController" as controller  <<controller>>
+participant "Products : Web page" as products <<page>>
+participant "Jooby Module" as module <<module>> 
+participant "ProductDao" as dao <<dao>>
+database "H2\nDatabase" as db
+
+customer -> nav++ : opens homepage 
+customer -> nav : clicks on browse products
+nav -> controller++ : ProductController.viewProducts()
+nav--
+controller -> products++ : window.location = products webpage
+products -> controller : ProductController.products
+controller -> module++ : productsAPI.query()
+module -> dao++ : dao.getProducts() 
+dao -> db++ : select all products in database
+return ResultSet
+return products
+return products
+
+@enduml
